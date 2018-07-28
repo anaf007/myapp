@@ -1,5 +1,5 @@
 {% extends "admin/bases.html" %}
-{% block title %}管理员主页{% endblock %}
+{% block title %}站点管理{% endblock %}
 {% block body %}
 
 
@@ -50,21 +50,11 @@
     {% endwith %}
     
 
-    <h1>当前在线人数：<span id='online_count'>0</span> 人。</h1>
+    <h1>当前在线人数：{{online_count}}人。</h1>
     </div>
   </div>
   
   {%include 'admin/footer.html'%}
-  <script src="{{url_for('static',filename='404/js/jquery-1.7.2.min.js')}}"></script>
-
-
-<script>
-    var source = new EventSource("{{ url_for('sse.stream') }}");
-source.addEventListener('online', function(event) {
-  var data = JSON.parse(event.data);
-    document.getElementById('online_count').innerHTML = data.count;
-}, false);
-  </script>
 
 
 

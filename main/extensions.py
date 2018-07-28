@@ -7,6 +7,8 @@ from flask_login import LoginManager
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf.csrf import CSRFProtect
+from flask_sse import sse
+from flask_redis import FlaskRedis
 
 bcrypt = Bcrypt()
 csrf_protect = CSRFProtect()
@@ -15,3 +17,4 @@ db = SQLAlchemy()
 migrate = Migrate()
 cache = Cache()
 debug_toolbar = DebugToolbarExtension()
+redis_store = FlaskRedis()

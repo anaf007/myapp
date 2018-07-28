@@ -8,7 +8,8 @@ class Config(object):
 
     # import os
     # os.urandom(24)
-    SECRET_KEY = os.environ.get('MAIN_SECRET', 'secret-key')  # TODO: Change me
+    SECRET_KEY = os.environ.get('MAIN_SECRET', 'secret-key')  
+
     APP_DIR = os.path.abspath(os.path.dirname(__file__))  # This directory
     PROJECT_ROOT = os.path.abspath(os.path.join(APP_DIR, os.pardir))
     BCRYPT_LOG_ROUNDS = 13
@@ -22,6 +23,10 @@ class Config(object):
 
     #回话超时登出 分钟
     PERMANENT_SESSION_LIFETIME = timedelta(minutes=10)
+
+    #redis配置
+    REDIS_URL = 'redis://:@localhost:6379'
+    ONLINE_LAST_MINUTES = 10
 
 
 class ProdConfig(Config):

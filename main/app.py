@@ -3,9 +3,12 @@
 from flask import Flask, render_template
 
 from main import commands, public, user, admin
-from main.extensions import bcrypt, cache, csrf_protect, db, debug_toolbar, login_manager, migrate
+from main.extensions import bcrypt, cache, csrf_protect, db, \
+    debug_toolbar, login_manager, migrate, redis_store
 from main.settings import ProdConfig
 from main import models
+
+from flask_sse import sse
 
 def create_app(config_object=ProdConfig):
     """An application factory, as explained here: http://flask.pocoo.org/docs/patterns/appfactories/.
@@ -31,6 +34,7 @@ def register_extensions(app):
     login_manager.init_app(app)
     debug_toolbar.init_app(app)
     migrate.init_app(app, db)
+    redis_store.init_app(app)
     return None
 
 
@@ -39,6 +43,9 @@ def register_blueprints(app):
     app.register_blueprint(public.bp)
     app.register_blueprint(user.views.blueprint)
     app.register_blueprint(admin.bp)
+
+    app.register_blueprint(sse, url_prefix='/stream')
+
     return None
 
 

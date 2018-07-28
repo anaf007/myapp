@@ -3,11 +3,26 @@
 from flask import Blueprint,session
 from main.helpers import LazyView
 
+
+
 bp = Blueprint('admin', __name__,url_prefix='/admin')
 
 from . import routes,views,models
 
-#回话超时登出
+
+#在每个请求之前执行这样的功能，即使在蓝图之外也是如此。
+# @bp.before_app_request
+# def before_app_request():
+#     print('before_app_request')
+
+
+#每个请求之前执行。
 @bp.before_request
-def make_session_permanent():
+def before_request():
+    #回话超时登出
     session.permanent = True
+
+    # print('before_request')
+
+
+
