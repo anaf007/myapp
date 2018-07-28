@@ -2,9 +2,8 @@
 
 from werkzeug import import_string, cached_property
 from functools import wraps
-from flask import request,render_template,session
+from flask import request,render_template,session,current_app
 from datetime import timedelta
-
 
 
 #延迟加载视图
@@ -22,7 +21,13 @@ class LazyView(object):
         return self.view(*args, **kwargs)
 
 
-#模板
+def url(bp,url_rule, import_name, **options):
+    view = LazyView('main.' + bp.name+'.views.'+ import_name)
+    bp.add_url_rule(url_rule, view_func=view, **options)
+
+
+
+#模板装饰器
 def templated(template=None):
     def decorator(f):
         @wraps(f)

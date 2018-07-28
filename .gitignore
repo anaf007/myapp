@@ -40,14 +40,8 @@ output/*/index.html
 # Sphinx
 docs/_build
 
-.webassets-cache
 
 # Virtualenvs
-env/
+venv/
 
-# npm
-/node_modules/
 
-# webpack-built files
-/main/static/build/
-/main/webpack/manifest.json

@@ -3,16 +3,11 @@
 from flask import Blueprint, flash, redirect, render_template, request, url_for
 from flask_login import login_required, login_user, logout_user
 
-
 from main.public.forms import LoginForm
 from main.user.forms import RegisterForm
 from main.user.models import User
 from main.utils import flash_errors
 from main.helpers import templated
-
-from . import blueprint
-
-
 
 @templated()
 def home():

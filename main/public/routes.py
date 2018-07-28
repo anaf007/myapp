@@ -1,20 +1,15 @@
 #coding-utf-8
-from main.helpers import LazyView
-from . import blueprint,url
-
-
-"""
-url延迟加载
-"""
+from main.helpers import url
+from . import  bp
 
 #home
-url('/', 'public.views.home')
+url(bp,'/', 'home')
 #logout
-url('/logout/','public.views.logout')
+url(bp,'/logout/','logout')
 #register
-url('/register/','public.views.register',methods=['GET', 'POST'])
+url(bp,'/register/','register',methods=['GET', 'POST'])
 #about
-url('/about/','public.views.about')
+url(bp,'/about/','about')
 #login
-url('/login/','public.views.login',methods=['POST'])
+url(bp,'/login/','login',methods=['POST'])
 

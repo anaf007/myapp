@@ -2,7 +2,7 @@
 """The app module, containing the app factory function."""
 from flask import Flask, render_template
 
-from main import commands, public, user
+from main import commands, public, user, admin
 from main.extensions import bcrypt, cache, csrf_protect, db, debug_toolbar, login_manager, migrate
 from main.settings import ProdConfig
 from main import models
@@ -12,7 +12,7 @@ def create_app(config_object=ProdConfig):
 
     :param config_object: The configuration object to use.
     """
-    app = Flask(__name__.split('.')[0],static_folder='../static',template_folder='../templates')
+    app = Flask(__name__.split('.')[0],static_folder='../static',template_folder='../tpl')
     app.config.from_object(config_object)
     register_extensions(app)
     register_blueprints(app)
@@ -36,8 +36,9 @@ def register_extensions(app):
 
 def register_blueprints(app):
     """Register Flask blueprints."""
-    app.register_blueprint(public.views.blueprint)
+    app.register_blueprint(public.bp)
     app.register_blueprint(user.views.blueprint)
+    app.register_blueprint(admin.bp)
     return None
 
 
@@ -59,7 +60,9 @@ def register_shellcontext(app):
         """Shell context objects."""
         return {
             'db': db,
-            'User': user.models.User}
+            'User': user.models.User,
+            'sysconfig': admin.models.SysConfig,
+            }
 
     app.shell_context_processor(shell_context)
 
@@ -70,3 +73,6 @@ def register_commands(app):
     app.cli.add_command(commands.lint)
     app.cli.add_command(commands.clean)
     app.cli.add_command(commands.urls)
+
+
+
