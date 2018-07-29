@@ -6,12 +6,12 @@
       
       <li class="layui-nav-item"><a href="#">控制台</a></li>
       <li class="layui-nav-item"><a href="#">商品管理</a></li>
-      <li class="layui-nav-item"><a href="{{url_for('admin.home')}}">用户</a></li>
+      <li class="layui-nav-item"><a href="{{url_for('admin.web_site')}}">用户</a></li>
       <li class="layui-nav-item">
         <a href="javascript:;">系统相关</a>
         <dl class="layui-nav-child">
           <dd><a href="{{url_for('admin.web_site')}}">站点管理</a></dd>
-          <dd><a href="{{url_for('admin.home')}}">添加新版本</a></dd>
+          <dd><a href="{{url_for('admin.web_site')}}">添加新版本</a></dd>
           <dd><a href="">授权管理</a></dd>
         </dl>
       </li>
@@ -19,7 +19,7 @@
     <ul class="layui-nav layui-layout-right">
       <li class="layui-nav-item">
         <a href="javascript:;">
-          <img src="#" class="layui-nav-img">
+          <img src="{{url_for('static',filename='login/images/air-balloon-2.png')}}" class="layui-nav-img">
           {{current_user.username}}
         </a>
         <dl class="layui-nav-child">

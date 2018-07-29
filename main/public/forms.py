@@ -37,3 +37,15 @@ class LoginForm(FlaskForm):
             self.username.errors.append('User not activated')
             return False
         return True
+
+
+"""
+class RegisterForm(FlaskForm):
+    username = StringField('用户名', validators={DataRequired(), render_kw={'placeholder':'your account','style':'text-align: center'})
+    password = PasswordField('密码',validators=[DataRequired(),render_kw={'placeholder':'your password','style':'text-align: center'})
+    confirm = PasswordField('确认密码',validators=[EqualTo('password',message='两次密码不一至')],render_kw={'placeholder':'your password agin','style':'text-align: center'})
+    email = StringField('邮箱',validators=[Email(message='邮箱格式不正确')],render_kw={'placeholder':'example@163.com','style':'text-align: center'})
+    submit = SubmitField('立即注册')
+#注意这里的render_kw的使用方法
+#它其实就是给我们的css添加我们需要的样式，是不是很神奇。
+"""

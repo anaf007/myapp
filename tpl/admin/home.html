@@ -50,7 +50,19 @@
     {% endwith %}
     
 
-    <h1>当前在线人数：<span id='online_count'>0</span> 人。</h1>
+    <h1>当前在线人数：<span id='online_count'>{{online_count}}</span> 人。</h1>
+    <h1>系统状态: <br>
+    <h2>CPU：{{psutil.cpu_count(logical=False)}}核心/{{psutil.cpu_count()}}线程/已使用<span id='use_cpu'>{{psutil.cpu_percent()}}</span>%</h2>
+    <h2>内存：总共{{mem.total//1024//1024}}MB，已用:{{use_mem}}MB</h2>
+    <h2>磁盘：total:{{disk.total//1000//1000//1000}}GB/
+    used:{{disk.used//1000//1000//1000}}GB/
+    free:{{disk.free//1000//1000//1000}}GB
+    <!-- mac按照1000比例计算 -->
+    </h2>
+
+    </h1>
+
+
     </div>
   </div>
   
@@ -59,10 +71,17 @@
 
 
 <script>
-    var source = new EventSource("{{ url_for('sse.stream') }}");
+    var source = new EventSource("{{ url_for('sse.stream',channel='admin') }}");
 source.addEventListener('online', function(event) {
   var data = JSON.parse(event.data);
+  online_count = document.getElementById('online_count').innerHTML;
     document.getElementById('online_count').innerHTML = data.count;
+}, false);
+
+source.addEventListener('cpu_use', function(event) {
+
+  var data = JSON.parse(event.data);
+  document.getElementById('use_cpu').innerHTML = data.cpu_use;
 }, false);
   </script>
 

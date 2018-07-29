@@ -11,5 +11,5 @@ url(bp,'/register/','register',methods=['GET', 'POST'])
 #about
 url(bp,'/about/','about')
 #login
-url(bp,'/login/','login',methods=['POST'])
+url(bp,'/login/','login',methods=['GET', 'POST'])
 

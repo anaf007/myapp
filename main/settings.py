@@ -28,6 +28,10 @@ class Config(object):
     REDIS_URL = 'redis://:@localhost:6379'
     ONLINE_LAST_MINUTES = 10
 
+    #验证码
+    VERIFICATION_CODE_FONT = os.environ.get('CN_CMS_VERIFICATION_CODE_FONT') or 'Arial.ttf'
+
+
 
 class ProdConfig(Config):
     """Production configuration."""

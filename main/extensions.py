@@ -9,6 +9,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_wtf.csrf import CSRFProtect
 from flask_sse import sse
 from flask_redis import FlaskRedis
+from concurrent.futures import ThreadPoolExecutor
 
 bcrypt = Bcrypt()
 csrf_protect = CSRFProtect()
@@ -18,3 +19,4 @@ migrate = Migrate()
 cache = Cache()
 debug_toolbar = DebugToolbarExtension()
 redis_store = FlaskRedis()
+executor = ThreadPoolExecutor(2)

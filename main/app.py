@@ -10,6 +10,7 @@ from main import models
 
 from flask_sse import sse
 
+
 def create_app(config_object=ProdConfig):
     """An application factory, as explained here: http://flask.pocoo.org/docs/patterns/appfactories/.
 
@@ -22,6 +23,8 @@ def create_app(config_object=ProdConfig):
     register_errorhandlers(app)
     register_shellcontext(app)
     register_commands(app)
+
+
     return app
 
 

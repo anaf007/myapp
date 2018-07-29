@@ -26,6 +26,7 @@ def home():
     return dict(form=form)
 
 
+@templated()
 def login():
     """login."""
     form = LoginForm(request.form)
@@ -37,6 +38,8 @@ def login():
             return redirect(redirect_url)
         else:
             flash_errors(form)
+
+    return dict(form=form)
 
 
 @login_required

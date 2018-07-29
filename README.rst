@@ -4,3 +4,6 @@ my app extends
 
 - **模板装饰器**
 - **延迟加载视图**
+- **flask-sse**
+- **Redis在线人数统计**
+- **psutil系统状态**
