@@ -2,7 +2,9 @@
 
 from flask import Blueprint,session
 from main.helpers import LazyView
-
+from flask_principal import Permission, RoleNeed
+# Create a permission with a single Need, in this case a RoleNeed.
+admin_permission = Permission(RoleNeed('admin'))
 
 
 bp = Blueprint('admin', __name__,url_prefix='/admin')

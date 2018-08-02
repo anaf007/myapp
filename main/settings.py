@@ -32,6 +32,9 @@ class Config(object):
     VERIFICATION_CODE_FONT = os.environ.get('CN_CMS_VERIFICATION_CODE_FONT') or 'Arial.ttf'
 
 
+    RBAC_USE_WHITE = True
+
+
 
 class ProdConfig(Config):
     """Production configuration."""
@@ -50,7 +53,7 @@ class DevConfig(Config):
     DB_NAME = 'dev.db'
     # Put the db file in project root
     DB_PATH = os.path.join(Config.PROJECT_ROOT, DB_NAME)
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///{0}'.format(DB_PATH)
+    SQLALCHEMY_DATABASE_URI = 'mysql://root:@127.0.0.1:3306/myapp'
     DEBUG_TB_ENABLED = True
     CACHE_TYPE = 'simple'  # Can be "memcached", "redis", etc.
 

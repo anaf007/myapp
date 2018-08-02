@@ -10,6 +10,8 @@ from flask_wtf.csrf import CSRFProtect
 from flask_sse import sse
 from flask_redis import FlaskRedis
 from concurrent.futures import ThreadPoolExecutor
+# from flask_rbac import RBAC
+from flask_principal import Principal
 
 bcrypt = Bcrypt()
 csrf_protect = CSRFProtect()
@@ -20,3 +22,5 @@ cache = Cache()
 debug_toolbar = DebugToolbarExtension()
 redis_store = FlaskRedis()
 executor = ThreadPoolExecutor(2)
+# rbac = RBAC()
+principal = Principal()

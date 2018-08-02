@@ -8,7 +8,10 @@ from main.user.forms import RegisterForm
 from main.user.models import User
 from main.utils import flash_errors
 from main.helpers import templated
+# from main.extensions import rbac
 
+
+# @rbac.allow(['anonymous'], methods=['GET'])
 @templated()
 def home():
     """Home page."""

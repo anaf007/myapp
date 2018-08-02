@@ -4,7 +4,7 @@ from flask import Flask, render_template
 
 from main import commands, public, user, admin
 from main.extensions import bcrypt, cache, csrf_protect, db, \
-    debug_toolbar, login_manager, migrate, redis_store
+    debug_toolbar, login_manager, migrate, redis_store, principal
 from main.settings import ProdConfig
 from main import models
 
@@ -38,6 +38,8 @@ def register_extensions(app):
     debug_toolbar.init_app(app)
     migrate.init_app(app, db)
     redis_store.init_app(app)
+    # rbac.init_app(app)
+    principal.init_app(app)
     return None
 
 
